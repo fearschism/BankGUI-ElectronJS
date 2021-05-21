@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="tailwind.css">
+    <title>Login Page</title>
+</head>
+<body class="bg-gray-400 flex">
+    <!--  Left Side-->
+    <div class="border-r-8 border-solid border-white w-1/2 h-screen bg-gradient-to-l bg-blend-hue bg-gray-800">
+        <div class="py-64 md:px-12 sm\:-bottom-20 font-serif lg:text-4xl px-0 text-2xl text-white "> Welcome to the BankGUI-ElectronJS Please Login</div>
+    </div>
+    <!-- Right side(Login) -->
+    <div class="h-screen  w-1/2 space-y-6">
+        <div class="flex mt-40 ml-2 md:ml-28 lg:ml-56 w-52 space-x-4">
+            <input type="radio" name="group1" id="USER" checked value="USER">
+            <label for="huey" class="font-bold">USER</label>
+            <input type="radio" name="group1" id="ADMIN" value="ADMIN">
+            <label for="huey" class="font-bold">ADMIN</label>
+  
+        </div>
+        <div class="w-1/3 h-1/3  block  lg:ml-56 space-y-5 ml-2 md:ml-28" >
+        <div id="L" class="text-4xl font-bold ">USERNAME</div>
+        <input type="text" name="" id="name3" class="font-bold p-3 lg:w-72 w-52 rounded focus-within:w-56 transition focus:ring-2 focus:ring-blue-600">
+        <small id="UEr" class="opacity-0 text-red-600">Error massege</small>
+        <div id="LP" class="text-4xl font-bold ">PASSWORD</div>
+        <input type="password" name="" id="pass" class="p-3 lg:w-72 w-52 rounded transition focus:ring-2 focus:ring-blue-600">
+            <small class =" opacity-0 text-red-600" id="AEr">Error massege</small>
+        <button   id="btn" type="button" class="bg-white lg:text-3xl py-3 lg:px-20 md:px-16 lg:ml-8 ml-2 md:ml-4 hover:bg-gray-500 hover:text-white active:bg-gray-800 px-14 text-xl transform hover:scale-110  rounded transition-transform focus:ring-2 focus:ring-blue-600 mt-2">Login</button>
+
+</div>
+    </div>
+    <script src="JS/index.js"></script>
+    <script src="JS/main.js"></script>
+</body>
+</html>
