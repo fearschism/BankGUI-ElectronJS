@@ -1,6 +1,5 @@
+var fs = require('fs');
 
-var file = new File("Data/UsersLogin.txt");
-
-file.open("w");
-file.writeln("hello motherfuckers");
-file.close();
+var readMe = fs.readFileSync('Data\\AdminsLogin.txt', 'utf8').split('/\r?\n/');
+const [username,password] = readMe;
+console.log(readMe," ");
