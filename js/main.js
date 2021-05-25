@@ -1,12 +1,12 @@
 const { app, BrowserWindow } = require('electron');
-
 function createWindow() {
     const win = new BrowserWindow({
         height: 800,
-        width: 800,
+        width: 950,
         minHeight:800,
         minWidth:800,
         autoHideMenuBar: true,
+        resizable: false,
         webPreferences: {
             nodeIntegration: true,
             enableRemoteModule: true
@@ -16,7 +16,7 @@ function createWindow() {
 
     win.setTitle('BankGUI-ElectronJS');
     win.loadFile('index.html');
-    //win.webContents.openDevTools();
+    win.webContents.openDevTools();
 }
 
 app.whenReady().then(createWindow);

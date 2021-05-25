@@ -1,4 +1,3 @@
-      //  const fs = require('fs');
         const raAdmin = document.querySelector('#ADMIN');
         const raUser = document.querySelector('#USER');
         const Uname = document.querySelector('#name3');
@@ -10,7 +9,25 @@
         const LP = document.querySelector('#LP');
         var OKcheck;var OKadmin;var OKuser
         var usernameArr = ['saad','moh','ahmad','admin']; //just to test function replacing this with a file system with real data.
-        var passwordArr = ['saad','moh','ahmad','admin'];
+        var passwordArr = ['saad','moh','ahmad','admin'];let indy;
+
+        //Storage--System. READ-ONLY
+        // let admin = {
+        //     name:'saad',
+        //     password:'saad'
+        // }
+        // let admin2 ={
+        //     name: 'admin',
+        //     password:'admin'
+        // }
+        // let arr = [admin,admin2];
+        // localStorage.setItem('admin',JSON.stringify(arr)); 
+        var AdminsLogin = JSON.parse(localStorage.getItem('admin'));
+        var UserLogin = JSON.parse(localStorage.getItem('user'));
+    //-------------------
+
+
+
         //button eventListner
         Login.addEventListener('click',() => {
             Check();
@@ -28,21 +45,23 @@
             }
         }
         function Checkfile(username,password) { //readfile goes here.
-            for(var i=0;i<usernameArr.length;i++) {if(username == usernameArr[i] && password == passwordArr[i]){console.log("welcome");var okok = true}}
-            if(okok){
+            for(var i=0;i<AdminsLogin.length;i++) {if(username == AdminsLogin[i].name && password == AdminsLogin[i].password){console.log("welcome Admin");var okokA = true}}
+            for(var i=0;i<UserLogin.length;i++) {if(username == UserLogin[i].name && password == UserLogin[i].password){console.log("welcome User");indy = i;var okokU = true}}
+            if(okokA){
             ErrorN.classList.remove('opacity-1');ErrorN.classList.add('opacity-0');
-            if(OKadmin)
+            }
+            if(OKadmin && okokA)
             window.location.href = 'AdminHome.html';
-            else {
-                window.location.href = 'www.google.com'
+            if(OKuser && okokU) {
+                window.location.href = 'UserHome.html'
             }
-            }
+            
             else{ErrorN.innerHTML = 'username or password is incorrect';ErrorN.classList.remove('opacity-0');ErrorN.classList.add('opacity-1');console.log("Wrong")}
         }
         function RadioCheck() {
             if(raAdmin.checked) {OKadmin = true;}
             else if(raUser.checked) {OKuser = true}
-        }
+        } 
         //Radio buttons check
         //username checking(isEmpty?,isMeetRequirements?)
         //password checking(isEmpty?,isMeetRequirements?)
