@@ -6,8 +6,9 @@ module.exports = {
   },
   variants: {
     extend: {
-      backgroundColor: ["active"],
-      scale: ["focus-within"]
+      backgroundColor: ["active",'disabled'],
+      scale: ["focus-within"],
+      cursor: ['disabled']
     },
   },
   plugins: [],
