@@ -1,10 +1,15 @@
 const { app, BrowserWindow } = require('electron');
+const fs = require('fs');
+const os = require('os');
+const storage = require('electron-json-storage');
 function createWindow() {
     const win = new BrowserWindow({
         height: 800,
         width: 950,
         minHeight:800,
         minWidth:800,
+        fullscreenable:false,
+        fullscreen:false,
         autoHideMenuBar: true,
         resizable: false,
         webPreferences: {
@@ -32,3 +37,8 @@ app.on('activate', () => {
         createWindow();
     }
 });
+storage.setDataPath(os.tmpdir());
+storage.set('foobar', { foo: 'bar' }, function(error) {
+    if (error) throw error;
+  });
+  console.log(require('electron').app.getPath('userData'));

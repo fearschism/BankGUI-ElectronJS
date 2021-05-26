@@ -11,17 +11,32 @@
         var usernameArr = ['saad','moh','ahmad','admin']; //just to test function replacing this with a file system with real data.
         var passwordArr = ['saad','moh','ahmad','admin'];let indy;
 
-        //Storage--System. READ-ONLY
-        // let admin = {
-        //     name:'saad',
-        //     password:'saad'
-        // }
-        // let admin2 ={
-        //     name: 'admin',
-        //     password:'admin'
-        // }
-        // let arr = [admin,admin2];
-        // localStorage.setItem('admin',JSON.stringify(arr)); 
+        //Storage--System. READ-ONLY, default users and admins you can delete them using dashboard not here.
+         let admin = {
+             name:'saad',
+             password:'saad'
+         }
+         let admin2 ={
+             name: 'admin',
+         password:'admin'
+         }
+         let user = {
+            name:'saad',
+            balance: 11,
+            password:'saad'
+        }
+        let user2 ={
+            name: 'user',
+            balance: 10000,
+            password:'user'
+        }
+            let arr = [admin,admin2];
+            let arr2 = [user,user2];
+            if(localStorage.getItem('admin') == null && localStorage.getItem('user') == null) { //used for first time installation.
+                localStorage.setItem('admin',JSON.stringify(arr));
+                localStorage.setItem('user',JSON.stringify(arr2));  
+            }
+         
         var AdminsLogin = JSON.parse(localStorage.getItem('admin'));
         var UserLogin = JSON.parse(localStorage.getItem('user'));
     //-------------------
@@ -45,14 +60,26 @@
             }
         }
         function Checkfile(username,password) { //readfile goes here.
-            for(var i=0;i<AdminsLogin.length;i++) {if(username == AdminsLogin[i].name && password == AdminsLogin[i].password){console.log("welcome Admin");var okokA = true}}
+            for(var i=0;i<AdminsLogin.length;i++) {if(username == AdminsLogin[i].name && password == AdminsLogin[i].password){console.log("welcome Admin");indy = i;var okokA = true}}
             for(var i=0;i<UserLogin.length;i++) {if(username == UserLogin[i].name && password == UserLogin[i].password){console.log("welcome User");indy = i;var okokU = true}}
             if(okokA){
             ErrorN.classList.remove('opacity-1');ErrorN.classList.add('opacity-0');
             }
-            if(OKadmin && okokA)
+            if(OKadmin && okokA) {
+            var loggedinA = { //session
+                name:AdminsLogin[indy].name,
+                password:AdminsLogin[indy].password
+            }
+            localStorage.setItem('logA', JSON.stringify(loggedinA));
             window.location.href = 'AdminHome.html';
+            }
             if(OKuser && okokU) {
+                var loggedinU = { //session
+                    name:UserLogin[indy].name,
+                    balance: UserLogin[indy].balance,
+                    password:UserLogin[indy].password
+                }
+                localStorage.setItem('logU', JSON.stringify(loggedinU));
                 window.location.href = 'UserHome.html'
             }
             
