@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="tailwind.css">
+    <title>Manage Clients</title>
+</head>
+<body class="bg-indigo-600">
+    <div class="bg-indigo-400 w-full h-full flex justify-between p-2">
+        <a href="AdminHome.html">
+            <button type="button" id="home" class="text-xl  bg-yellow-500 rounded-xl p-2 hover:bg-yellow-300 active:bg-yellow-600 active:outline-black ml-14">Home</button>
+            </a>
+        <div class="text-2xl">Welcome ADMIN to your page</div>
+        <a href="index.html">
+        <button type="button" class="text-xl  bg-yellow-500 rounded-xl p-1 py-2 hover:bg-yellow-300 active:bg-yellow-600 active:outline-black mr-14" id="out">Logout</button>
+        </a>
+    </div>
+    <div class="bg-purple-400 block m-36 h-96 xl:space-y-24 space-y-10">
+        <div class="xl:ml-96 space-x-6">
+            <label for="" class="font-bold">USERNAME:</label>
+        <input type="text" name="" id="nnn" class ="p-3 w-96 mt-5" disabled>
+        <button id="Ename" type="button" class="bg-yellow-500 hover:bg-yellow-300 active:bg-yellow-600 p-3 px-8">Edit</button>
+        </div>
+    
+        <div class="xl:ml-96">
+            <label for="" class="font-bold">BALANCE:</label>
+            <input type="text" name="" id="bal" class ="p-3 w-96 ml-10" disabled>
+            </div>
+            <div class="xl:ml-96 space-x-6">
+                <label for="" class="font-bold">PASSWORD:</label>
+                <input type="text" name="" id="pass" class ="p-3 w-96" disabled>
+                </div>
+                <p class="font-bold text-red-700 ml-8">this username is already taken</p>
+                <div class="ml-10 mr-10 justify-evenly flex">
+                <button class="bg-yellow-500 hover:bg-yellow-300 active:bg-yellow-600 py-1 px-3 rounded-lg disabled:bg-gray-400 disabled:cursor-not-allowed" disabled id="prev">Previous</button>
+                <button class="bg-yellow-500 hover:bg-yellow-300 active:bg-yellow-600 py-1 px-3 rounded-lg disabled:bg-gray-400 disabled:cursor-not-allowed" id="next">Next</button>
+            </div>
+    </div>
+    <script>
+        //const fs = require('fs');
+const EditName = document.querySelector('#Ename');
+const homebtn = document.querySelector('#home');
+const Editbal = document.querySelector('#Ebal');
+const Editpass = document.querySelector('#Epass');
+const next = document.querySelector('#next');
+const prev = document.querySelector('#prev');
+let open = false;let openbal = false;let openpass = false;
+var httpUser;
+var index = 0;
+var boolprev;var boolnext;
+ var UserINFO =JSON.parse(localStorage.getItem('user')); //name password, and balance goes here from file
+ Writer(index);
+EditName.addEventListener('click',()=>{
+    open = !open;
+    if(open) {
+        EditName.innerHTML = "OK"
+    document.querySelector('#nnn').disabled = false;
+    document.querySelector('#nnn').focus();
+    document.querySelector('#bal').disabled = false;
+    document.querySelector('#pass').disabled = false;
+    if(next.disabled == false){next.disabled = true; boolnext = true;console.log('t r')};
+    if(prev.disabled == false){prev.disabled = true; boolprev = true;console.log('pred r')}
+    
+    
+    }
+    else {UserINFO[index].name =document.querySelector('#nnn').value;UserINFO[index].balance = document.querySelector('#bal').value ;UserINFO[index].password= document.querySelector('#pass').value;document.querySelector('#pass').disabled = true;document.querySelector('#bal').disabled = true;document.querySelector('#nnn').disabled = true;EditName.innerHTML = "Edit"; if(boolnext == true){next.disabled = false;console.log('next r')};if(boolprev== true){prev.disabled = false;console.log('ptrv r')};boolnext = false; boolprev = false;localStorage.setItem('user',JSON.stringify(UserINFO))} //check duplication here.
+})
+function Writer(i) {
+    document.querySelector('#nnn').value = UserINFO[i].name;
+    document.querySelector('#bal').value = UserINFO[i].balance;
+    document.querySelector('#pass').value = UserINFO[i].password;
+}
+function checklimits() {
+    if(index+1 >= UserINFO.length) {next.disabled = true};
+}
+
+next.addEventListener('click',() => {
+    index++;
+    checklimits();
+    if(index!=0){checklimits(); Writer(index); console.log('not 0')}
+    Writer(index);
+    prev.disabled = false;
+})
+
+prev.addEventListener('click',() => {
+    index--;
+    checklimits();
+    if(index == 0){Writer(index);prev.disabled = true; console.log('not 0')}
+    Writer(index);
+    next.disabled = false;
+})
+function checkEdit() {
+
+}
+
+console.log(UserINFO);
+
+
+    </script>
+</body>
+</html>

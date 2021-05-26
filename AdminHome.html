@@ -9,24 +9,36 @@
 </head>
 <body class="bg-indigo-600">
     <!-- Header -->
-    <div class="bg-indigo-400 w-full h-full flex justify-evenly p-2">
-    <div class="text-2xl">Welcome ADMIN to your page</div>
-    <button type="button" class="text-xl  bg-yellow-500 rounded-xl p-1">Logout</button>
-</div>
+    <div class="bg-indigo-400 w-full h-full flex justify-between p-2">
+        <a href="">
+            <button type="button" class="text-xl  bg-yellow-500 rounded-xl p-2 hover:bg-yellow-300 active:bg-yellow-600 active:outline-none ml-14">Home</button>
+            </a>
+        <div class="text-2xl">Welcome ADMIN to your page</div>
+        <button type="button" id="out" class="text-xl  bg-yellow-500 rounded-xl p-1 py-2 hover:bg-yellow-300 active:bg-yellow-600 active:outline-black mr-14">Logout</button>
+     
+    </div>
 <!-- Hero -->
-<div class="block bg-gray-50 justify-center">
-    <a href="">
-    <button>Manage Clients</button>
+<div class="bg-indigo-400 m-16 flex 2xl:space-x-96 sm:space-x-8 md:space-x-20 lg:space-x-44 space-x-1 p-6" >
+    <a class="bg-yellow-500 rounded-xl p-2 hover:bg-yellow-300 active:bg-yellow-600 active:outline-black" href="AdminManageClients.html">
+    <label for="" class="cursor-pointer">Manage Clients</label>
     </a>
-    <a href="">
-    <button>Manage Balances</button>
+    <a class=" rounded-xl p-2 bg-gray-600 cursor-not-allowed" aria-disabled="true" href="">
+    <label for="" class="cursor-not-allowed">Manage Balance</label>
     </a>
-    <a href="">
-    <button class="">Transfer</button>
+    <a class="bg-yellow-500 rounded-xl p-2 hover:bg-yellow-300 active:bg-yellow-600 active:outline-black" href="">
+    <label for="" class="cursor-pointer">Transfer</label>
     </a>
-    <a href="">
-    <button>Add Admin</button>
+    <a class="bg-yellow-500 rounded-xl p-2 hover:bg-yellow-300 active:bg-yellow-600 active:outline-black" href="">
+        <label for="" class="cursor-pointer">Add Admins</label>
     </a>
 </div>
+<script>
+    var logout = document.querySelector('#out');
+    logout.addEventListener('click',()=> {
+       // var r = confirm("Are you sure?"); //works on web, but freezes electron.
+      window.location.href = 'index.html'
+        
+    })
+</script>
 </body>
 </html>

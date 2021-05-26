@@ -7,8 +7,26 @@
     <link rel="stylesheet" href="tailwind.css">
     <title>Home</title>
 </head>
-<body>
-    <h1 id="test">sdadadasdadad</h1>
+<body class="justify-between flex ">
+    <!-- left container -->
+    <div class="bg-gray-300 h-screen w-11/12 border-r-8 border-solid border-white">
+       <h1 class="text-4xl ml-3 font-serif w-full select-none" id="user">welcome abdulazizahmad231</h1>
+       <div class="bg-gray-100 rounded-md h-3/5 m-7 block">
+        <div class="space-y-20 ml-8"><div class="bg-gray-800 rounded-md h-24"><p class="text-5xl text-gray-50 select-none" id="bal">Balance: 100000000 $</p></div>
+    <div class="flex space-x-14"><button class="bg-gray-800 rounded-md w-5/12 h-12 text-gray-50 hover:bg-gray-400 active:bg-gray-300 select-none" >Withdraw/deposit</button> <button class="bg-gray-800 w-5/12  rounded-md text-gray-50 hover:bg-gray-400 active:bg-gray-300 disabled:bg-gray-400 disabled:cursor-not-allowed select-none" disabled>Invest-WIP</button></div>
+    <div class="flex space-x-14"><button class="bg-gray-800 rounded-md w-5/12 h-12 text-gray-50 hover:bg-gray-400 active:bg-gray-300 select-none">Edit</button> <button class="bg-gray-800 rounded-md w-5/12  text-gray-50 hover:bg-gray-400 active:bg-gray-300 select-none">Transfer</button></div></div>
+    
+    </div>
+    <p>Created by @fearSchism</p>
+    </div>
+    <!-- right container -->
+    <div class="bg-blue-900 h-screen w-1/2">
+        <div class="ml-14 mt-20 space-y-8">
+            <h1 class="text-6xl text-gray-50 select-none">BankGUI</h1>
+            <hr class="w-11/12">
+            <div class="space-x-1"><button class="bg-gray-800 rounded-md w-5/12 h-12 text-gray-50 hover:bg-gray-400 active:bg-gray-300">Home</button> <button class="bg-gray-800 rounded-md w-5/12 h-12 text-gray-50 hover:bg-gray-400 active:bg-gray-300" onclick="window.location.href = 'index.html';localStorage.removeItem('logU')">Logout</button></div>
+        </div>
+    </div>
     <script src="JS/userhome.js"></script>
 </body>
 </html>
