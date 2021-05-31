@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="tailwind.css">
+    <link rel="stylesheet" href="css/animation.css">
+    <title>Home</title>
+</head>
+<body class="justify-between flex ">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    
+    <!-- left container -->
+    <div class="bg-gray-300 h-screen w-11/12 border-r-8 border-solid border-white">
+       <h1 class="text-4xl ml-3 font-serif w-full select-none font-bold" id="user">{the welcome massege goes her}</h1>
+       <div class="bg-gray-100 rounded-md h-3/5 m-7 block border-gray-200 border-l-8">
+    <div class="block h-full">
+        <p class="text-center text-gray-800 text-4xl font-semibold">Transfer</p>
+        <div class="flex space-x-3 mt-16 ml-20">
+            <div class="grid">
+                <input list="uu" type="number" class="w-96 h-14 border-gray-900 border-b-8 p-1" placeholder="Account NO." id="input" min="0" max="9999" maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                <small class="text-base text-red-600 opacity-0" id="small">Test massege</small>
+                <input type="number" class="w-96 h-14 border-gray-900 border-b-8 p-1" placeholder="Amount" id="amount" maxlength="4"oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                <small class="text-base text-red-600 opacity-0" id="small">Test massege</small>
+            </div>
+            
+        </div>
+        <div class="justify-center flex m-14"><button class="bg-gray-800 w-44 h-14 text-gray-50 hover:bg-gray-400 active:bg-gray-300 select-none" id="ok">OK</button></div>
+    </div>
+    </div>
+    <p>--Created by @fearSchism</p>
+    </div>
+    <!-- right container -->
+    <div class="bg-blue-900 h-screen w-1/2">
+        <div class="ml-14 mt-20 space-y-8">
+            <h1 class="text-6xl text-gray-50 select-none">BankGUI</h1>
+            <hr class="w-11/12">
+            <div class="space-x-1"><button class="bg-gray-800 rounded-md w-5/12 h-12 text-gray-50 hover:bg-gray-400 active:bg-gray-300" onclick="window.location.href = 'UserHome.html';">Home</button> <button class="bg-gray-800 rounded-md w-5/12 h-12 text-gray-50 hover:bg-gray-400 active:bg-gray-300" onclick="window.location.href = 'index.html';localStorage.removeItem('logU')">Logout</button></div>
+        </div>
+    </div>
+    <script src="JS/userhome.js"></script>
+    <script src="JS/Transfer.js"></script>
+</body>
+</html>
