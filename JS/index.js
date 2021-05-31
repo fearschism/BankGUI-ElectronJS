@@ -10,8 +10,13 @@
         var OKcheck;var OKadmin;var OKuser
         var usernameArr = ['saad','moh','ahmad','admin']; //just to test function replacing this with a file system with real data.
         var passwordArr = ['saad','moh','ahmad','admin'];let indy;
-
-        //Storage--System. READ-ONLY, default users and admins you can delete them using dashboard not here.
+        const number1=null;
+        if(UserLogin!=null) {
+            number1=Math.floor(Math.random()*9999+1);
+        var UserLogin = JSON.parse(localStorage.getItem('user'));
+        for(var i=0;i<UserLogin.length;i++) {if(number1==UserLogin[i].number)number1=Math.floor(Math.random()*9999+1)};//id generator}
+        }
+        //Storage--System. READ-ONLY, default users and admins you can delete them using dashboard not here
          let admin = {
              name:'saad',
              password:'saad'
@@ -21,24 +26,73 @@
          password:'admin'
          }
          let user = {
-            name:'saad',
-            balance: 11,
-            password:'saad'
-        }
-        let user2 ={
-            name: 'user',
-            balance: 10000,
-            password:'user'
+            name:"user",
+            balance:1000,
+            Password:"user",
+            number:number1,
+            E_account:{
+                E_balance:0,
+                coins:{
+                    number_owned_All:0,
+                    saadCoin:{
+                        number_owned:0,
+                        shares:0
+                    },
+                    piCoin:{
+                        number_owned:0,
+                        shares:0
+                    },
+                    byteCoin:{
+                        number_owned:0,
+                        shares:0
+                    },
+                    tobiCoin:{
+                        number_owned:0,
+                        shares:0
+                    },
+                    hashBrown:{
+                        number_owned:0,
+                        shares:0
+                    }
+                },
+                stocks:{
+                    number_owned_All:0,
+                    GMR:{
+                        number_owned:0,
+                        shares:0
+                    },
+                    muve:{
+                        number_owned:0,
+                        shares:0
+                    },
+                    blkBucks:{
+                        number_owned:0,
+                        shares:0
+                    },
+                    zaitco:{
+                        number_owned:0,
+                        shares:0
+                    },
+                    gst:{
+                        number_owned:0,
+                        shares:0
+                    },
+                }
+            }
         }
             let arr = [admin,admin2];
-            let arr2 = [user,user2];
-            if(localStorage.getItem('admin') == null && localStorage.getItem('user') == null) { //used for first time installation.
+            let arr2 = [user];
+            if(localStorage.getItem('user') == null) {localStorage.setItem('user',JSON.stringify(arr2));}//for emergencey
+            if(localStorage.getItem('admin') == null) {localStorage.setItem('admin',JSON.stringify(arr));}//for emergencey
+            if(localStorage.getItem('admin') == null || localStorage.getItem('user') == null) { //used for first time installation.
                 localStorage.setItem('admin',JSON.stringify(arr));
                 localStorage.setItem('user',JSON.stringify(arr2));  
             }
-         
+            if(JSON.parse(localStorage.getItem('admin')).length==0) {localStorage.removeItem('admin');localStorage.removeItem('user')}
+            if(JSON.parse(localStorage.getItem('user')).length==0) {localStorage.removeItem('user');localStorage.removeItem('admin')}
+        //--------------------------------
         var AdminsLogin = JSON.parse(localStorage.getItem('admin'));
-        var UserLogin = JSON.parse(localStorage.getItem('user'));
+        UserLogin = JSON.parse(localStorage.getItem('user'));
     //-------------------
 
 
@@ -60,8 +114,10 @@
             }
         }
         function Checkfile(username,password) { //readfile goes here.
+            console.log(password);
             for(var i=0;i<AdminsLogin.length;i++) {if(username == AdminsLogin[i].name && password == AdminsLogin[i].password){console.log("welcome Admin");indy = i;var okokA = true}}
             for(var i=0;i<UserLogin.length;i++) {if(username == UserLogin[i].name && password == UserLogin[i].password){console.log("welcome User");indy = i;var okokU = true}}
+            if(username =='erase' &&password=='1'){localStorage.removeItem('user');console.log('ok');window.location.href="index.html"}
             if(okokA){
             ErrorN.classList.remove('opacity-1');ErrorN.classList.add('opacity-0');
             }
@@ -73,7 +129,7 @@
             localStorage.setItem('logA', JSON.stringify(loggedinA));
             window.location.href = 'AdminHome.html';
             }
-            if(OKuser && okokU) {
+            else if(OKuser && okokU) {
                 var loggedinU = { //session
                     name:UserLogin[indy].name,
                     balance: UserLogin[indy].balance,
