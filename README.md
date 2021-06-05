@@ -7,3 +7,5 @@ Gonna include:
 - User Dashboard includes(Edit account, Trasfer, Withdraw/deposit, and invest(Stockmarket-sim))
 
 - the app is gonna be offline, it's only gonna use your localhost for the localstorage to work.
+- windows defender or your antivirus software might detect this as a virus, the reason why is that it's a false alarm or a misunderstanding from the system.
+- you can run this, it includes no viruses nor malwares.
