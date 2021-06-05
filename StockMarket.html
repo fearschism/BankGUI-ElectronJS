@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/animation.css">
+    <title>StockMarket-v0.0.1-alpha</title>
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- Preloader -->
+    <div id="preloader">
+      <div id="status">&nbsp;</div>
+    </div>
+<h1>The Stock market is under development</h1>
+<button onclick="window.location.href= 'UserHome.html'">Return To Home</button>
+
+ <script>
+        $(window).on('load', function() { // makes sure the whole site is loaded 
+  $('#status').delay(3000).fadeOut(); // will first fade out the loading animation 
+  $('#preloader').delay(3000).fadeOut('slow'); // will fade out the white DIV that covers the website. 
+  $('body').delay(350).css({'overflow':'visible'});
+})
+    
+</script>
+</body>
+</html>

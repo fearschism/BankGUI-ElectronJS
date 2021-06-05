@@ -81,6 +81,7 @@ function createWindow() {
         fullscreen:false,
         autoHideMenuBar: true,
         resizable: false,
+        icon:"images/bank-icon-256.png",
         webPreferences: {
             nodeIntegration: true,
             enableRemoteModule: true

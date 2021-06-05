@@ -5,27 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="tailwind.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Home</title>
 </head>
 <body class="justify-between flex ">
     <!-- left container -->
-    <div class="bg-green-100 h-screen w-11/12 border-r-8 border-solid border-white">
+    <div class="bg-red-100 h-screen w-11/12 border-r-8 border-solid border-white">
        <h1 class="text-4xl ml-3 font-serif w-full select-none font-bold" id="user">{the welcome massege goes her}</h1>
        <div class="bg-gray-100 rounded-md h-3/5 m-7 block border-gray-200 border-l-8">
-    <div class="block h-full">
+    <div class="block h-full space-y-3">
         <p class="text-center text-gray-800 text-4xl font-semibold">Edit Account</p>
-        <div class="flex space-x-3 mt-16 ml-10">
-            <div class="grid space-y-2">
-                <button class="bg-gray-800 w-24 h-14 text-gray-50 hover:bg-gray-400 active:bg-gray-300 transition-all disabled:bg-gray-400 disabled:cursor-not-allowed select-none" id="with">Withdraw</button>
-                <button class="bg-gray-800 w-24 h-14 text-gray-50 hover:bg-gray-400 active:bg-gray-300 transition-all delay-75 disabled:bg-gray-400 disabled:cursor-not-allowed select-none" id="dep" disabled>Deposit</button>
-            </div>
-            <div class="grid">
-                <input type="number" class="w-96 h-14 border-gray-900 border-b-8 p-1" placeholder="Enter a Number" id="input">
-                <small class="text-base text-red-600 opacity-0" id="small">Test massege</small>
-            </div>
-            
-        </div>
-        <div class="justify-end flex m-14"><button class="bg-gray-800 w-44 h-14 text-gray-50 hover:bg-gray-400 active:bg-gray-300 select-none" id="ok">OK</button></div>
+        <div class="bg-red-500 h-1/6 ml-44 mr-44 text-center text-2xl grid font-semibold rounded-md"><label for="">Account number:</label><label for="" id="accno" class="text-red-200 font-bold">0000</label></div>
+    <div class="flex  m-20">
+        <div class="grid space-y-2">
+        <input type="text" class="w-96 h-14 border-gray-900 border-b-8 p-1" placeholder="Name" id="name" maxlength="14" disabled >
+        <small class="text-sm text-red-600 opacity-100" id="am">Test massege</small>
+        <input type="text" class="w-96 h-14 border-gray-900 border-b-8 p-1" placeholder="Password" id="pass" maxlength="14" disabled>
+        <small class="text-sm text-red-600 opacity-100" id="am">Test massege</small>
+    </div>
+    </div>
+        <div class="justify-end flex m-14"><button class="bg-gray-800 w-44 h-14 text-gray-50 hover:bg-gray-400 active:bg-gray-300 select-none rounded-md" id="ok">EDIT</button></div>
     </div>
     </div>
     <p>--Created by @fearSchism</p>
@@ -38,7 +37,7 @@
             <div class="space-x-1"><button class="bg-gray-800 rounded-md w-5/12 h-12 text-gray-50 hover:bg-gray-400 active:bg-gray-300" onclick="window.location.href = 'UserHome.html';">Home</button> <button class="bg-gray-800 rounded-md w-5/12 h-12 text-gray-50 hover:bg-gray-400 active:bg-gray-300" onclick="window.location.href = 'index.html';localStorage.removeItem('logU')">Logout</button></div>
         </div>
     </div>
-    <script src="JS/WD.js"></script>
+    <script>const user = JSON.parse(localStorage.getItem('logU'));$('#accno').text(user.number);$('#name').val(user.name);$('#pass').val(user.password);</script>
     <script src="JS/userhome.js"></script>
 </body>
 </html>

@@ -57,6 +57,8 @@ var httpUser;
 var index = 0;
 var boolprev;var boolnext;
  var UserINFO =JSON.parse(localStorage.getItem('user')); //name password, and balance goes here from file
+ if(UserINFO.length==1){remove.disabled=true;next.disabled=true}else{remove.disabled=false;next.disabled=false};
+ if(UserINFO.length>=10){add.disabled=true;}else{add.disabled=false;};
  Writer(index);
 EditName.addEventListener('click',()=>{
     switchnew = false;
@@ -124,8 +126,9 @@ add.addEventListener('click',()=>{
     let newUser = {
             name:"user",
             balance:1000,
-            Password:"user",
+            password:"user",
             number:number1,
+            loan:0,
             E_account:{
                 E_balance:0,
                 coins:{

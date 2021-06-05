@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="tailwind.css">
     <link rel="stylesheet" href="css/animation.css">
-    <title>Home</title>
+    <link rel="icon" href="https://iconsplace.com/wp-content/uploads/_icons/000000/256/png/bank-icon-256.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Transfer</title>
 </head>
 <body class="justify-between flex ">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
     <!-- left container -->
     <div class="bg-gray-300 h-screen w-11/12 border-r-8 border-solid border-white">
@@ -19,17 +21,21 @@
         <p class="text-center text-gray-800 text-4xl font-semibold">Transfer</p>
         <div class="flex space-x-3 mt-16 ml-20">
             <div class="grid">
-                <input list="uu" type="number" class="w-96 h-14 border-gray-900 border-b-8 p-1" placeholder="Account NO." id="input" min="0" max="9999" maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
-                <small class="text-base text-red-600 opacity-0" id="small">Test massege</small>
+                <input list="idlist" type="number" class="w-96 h-14 border-gray-900 border-b-8 p-1" placeholder="Account NO." id="input" min="0" max="9999" maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" ondblclick="document.querySelector('#input').value =''">
+                <small class="text-sm text-red-600 opacity-0" id="in">Test massege</small>
                 <input type="number" class="w-96 h-14 border-gray-900 border-b-8 p-1" placeholder="Amount" id="amount" maxlength="4"oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
-                <small class="text-base text-red-600 opacity-0" id="small">Test massege</small>
+                <small class="text-sm text-red-600 opacity-0" id="am">Test massege</small>
             </div>
-            
+            <datalist id="idlist">
+                <option value="0" >MyE_account
+                <option value="1" >Loan_Pay
+                </datalist>
         </div>
         <div class="justify-center flex m-14"><button class="bg-gray-800 w-44 h-14 text-gray-50 hover:bg-gray-400 active:bg-gray-300 select-none" id="ok">OK</button></div>
     </div>
     </div>
-    <p>--Created by @fearSchism</p>
+    <p>- <i class="fas fa-exclamation"></i>Created by @fearSchism</p>
+    <p>- <i class="fas fa-exclamation"></i>Double click "Account NO." to erase the number</p>
     </div>
     <!-- right container -->
     <div class="bg-blue-900 h-screen w-1/2">
@@ -39,7 +45,39 @@
             <div class="space-x-1"><button class="bg-gray-800 rounded-md w-5/12 h-12 text-gray-50 hover:bg-gray-400 active:bg-gray-300" onclick="window.location.href = 'UserHome.html';">Home</button> <button class="bg-gray-800 rounded-md w-5/12 h-12 text-gray-50 hover:bg-gray-400 active:bg-gray-300" onclick="window.location.href = 'index.html';localStorage.removeItem('logU')">Logout</button></div>
         </div>
     </div>
+    <script>
+    const userarr = JSON.parse(localStorage.getItem('user'));
+    const thisuser = JSON.parse(localStorage.getItem('logU'));var Ok;
+    var index;
+    for(var i=0;i<userarr.length;i++){
+    if(userarr[i].number !=null && userarr[i].name != thisuser.name)
+    $("#idlist").append($("<option>").attr('value', userarr[i].number).text(userarr[i].name));
+    }
+    $('#ok').click(function (e) { 
+        e.preventDefault();
+        Check();
+        if(Ok) {
+            if($('#input').val()!="0" && $('#input').val()!="1"){console.log("not 1 nor 0");userarr[index].balance=parseInt(userarr[index].balance)+parseInt($('#amount').val());thisuser.balance= parseInt(thisuser.balance)-parseInt($('#amount').val());localStorage.setItem('logU',JSON.stringify(thisuser));for(var i=0;i<userarr.length;i++){if(thisuser.name==userarr[i].name){index=i}};userarr[index]=thisuser;localStorage.setItem('user',JSON.stringify(userarr))}//transfer to other accounts
+            else if($('#input').val()=="1"){// Loan_Pay
+                if(parseInt(thisuser.loan)>=parseInt($('#amount').val())){console.log("Loan");thisuser.loan=parseInt(thisuser.loan)-parseInt($('#amount').val());thisuser.balance= parseInt(thisuser.balance)-parseInt($('#amount').val());localStorage.setItem('logU',JSON.stringify(thisuser));for(var i=0;i<userarr.length;i++){if(thisuser.name==userarr[i].name){index=i}};userarr[index]=thisuser;localStorage.setItem('user',JSON.stringify(userarr))}//do the transfer
+                else if(parseInt(thisuser.loan)<parseInt($('#amount').val())){console.log("Loan Error");$('#am').text("Your Loan is: "+thisuser.loan+"$");$('#am').removeClass('opacity-0');$('#am').addClass('opacity-100')}// Give Error
+            }//E_Account
+            else{console.log("okok");thisuser.E_account.E_balance =parseInt(thisuser.E_account.E_balance)+parseInt($('#amount').val());thisuser.balance= parseInt(thisuser.balance)-parseInt($('#amount').val());localStorage.setItem('logU',JSON.stringify(thisuser));for(var i=0;i<userarr.length;i++){if(thisuser.name==userarr[i].name){index=i}};userarr[index]=thisuser;localStorage.setItem('user',JSON.stringify(userarr))}
+        }
+    });
+
+    function Check(){//security
+        var k1=true;var k2=true;var k3=true;var k4=true; var checkID = false;var k5=true;var k6=true;Ok=false;
+        if(thisuser.balance<=0){k6=false;thisuser.balance=0;localStorage.setItem('logU',JSON.stringify(thisuser));console.log("Reset")}
+        if($('#input').val()==""){k1= false;console.log("Empty");$('#in').removeClass('opacity-0');$('#in').addClass('opacity-100');$('#in').text("Please Enter Account Number") }
+        if($('#amount').val()==""){k2= false;$('#am').removeClass('opacity-0');$('#am').addClass('opacity-100');$('#am').text("Please Enter A Number")}
+        for(var i=0;i<userarr.length;i++){if(parseInt($('#input').val()) == userarr[i].number){checkID = true;index = i}}
+        if(checkID==false && k1 ==true && $('#input').val()!="0" && $('#input').val()!="1"){k5 = false;$('#in').removeClass('opacity-0');$('#in').addClass('opacity-100');$('#in').text("INVALID ID")}
+        if(parseInt($('#amount').val())>5000 || parseInt($('#amount').val())<=0 ){k3=false;$('#am').removeClass('opacity-0');$('#am').addClass('opacity-100');$('#am').text("Limit is 5000$ and must be a positive number")}
+        if(parseInt(thisuser.balance)<parseInt($('#amount').val())){console.log("Less Than");k4= false;$('#am').removeClass('opacity-0');$('#am').addClass('opacity-100');$('#am').text("insufficient funds")}
+        if(k1 &&k2&&k3&&k5&&k4&&k6){console.log('okCheck');Ok=true;$('#in').removeClass('opacity-100');$('#in').addClass('opacity-0');$('#am').removeClass('opacity-100');$('#am').addClass('opacity-0');$('#am').val("")}
+    }
+    </script>
     <script src="JS/userhome.js"></script>
-    <script src="JS/Transfer.js"></script>
 </body>
 </html>

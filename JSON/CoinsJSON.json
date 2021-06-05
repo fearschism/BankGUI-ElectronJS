@@ -1,0 +1,16 @@
+{
+   "coin":{ 
+    "name":"TestCoin",
+    "symbol":"TTC",
+    "price":"0.000005",
+    "net-change":"0.00",
+    "percent-net-change":"0.00"
+   },
+   "Stocks":{
+    "name":"TestStock",
+    "symbol":"TTS",
+    "price":"0.000005",
+    "net-change":"0.00",
+    "percent-net-change":"0.00"
+   }
+}

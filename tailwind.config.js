@@ -8,7 +8,8 @@ module.exports = {
     extend: {
       backgroundColor: ["active",'disabled'],
       scale: ["focus-within"],
-      cursor: ['disabled']
+      cursor: ['disabled'],
+      outline: ['active']
     },
   },
   plugins: [],

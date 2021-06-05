@@ -13,14 +13,14 @@
        <h1 class="text-4xl ml-3 font-serif w-full select-none font-bold" id="user">{the welcome massege goes her}</h1>
        <div class="bg-gray-100 rounded-md h-3/5 m-7 block border-gray-200 border-l-8">
     <div class="block h-full">
-        <p class="text-center text-gray-800 text-4xl font-semibold">Withdraw/Deposit</p>
+        <p class="text-center text-gray-800 text-4xl font-semibold">Withdraw/Loan</p>
         <div class="flex space-x-3 mt-16 ml-10">
             <div class="grid space-y-2">
-                <button class="bg-gray-800 w-24 h-14 text-gray-50 hover:bg-gray-400 active:bg-gray-300 transition-all disabled:bg-gray-400 disabled:cursor-not-allowed select-none" id="with">Withdraw</button>
-                <button class="bg-gray-800 w-24 h-14 text-gray-50 hover:bg-gray-400 active:bg-gray-300 transition-all delay-75 disabled:bg-gray-400 disabled:cursor-not-allowed select-none" id="dep" disabled>Deposit</button>
+                <button class="bg-gray-800 w-24 h-14 text-gray-50 hover:bg-gray-400 active:bg-gray-300 transition-all disabled:bg-green-600 disabled:cursor-not-allowed select-none" id="with">Withdraw</button>
+                <button class="bg-gray-800 w-24 h-14 text-gray-50 hover:bg-gray-400 active:bg-gray-300 transition-all delay-75 disabled:bg-green-600 disabled:cursor-not-allowed select-none" id="dep" disabled>Loan</button>
             </div>
             <div class="grid">
-                <input type="number" class="w-96 h-14 border-gray-900 border-b-8 p-1" placeholder="Enter a Number" id="input">
+                <input type="number" class="w-96 h-14 border-gray-900 border-b-8 p-1" placeholder="Enter a Number" id="input" maxlength="4"oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
                 <small class="text-base text-red-600 opacity-0" id="small">Test massege</small>
             </div>
             

@@ -28,8 +28,9 @@
          let user = {
             name:"user",
             balance:1000,
-            Password:"user",
+            password:"user",
             number:number1,
+            loan:0,
             E_account:{
                 E_balance:0,
                 coins:{
@@ -130,10 +131,13 @@
             window.location.href = 'AdminHome.html';
             }
             else if(OKuser && okokU) {
-                var loggedinU = { //session
+                var loggedinU = {
                     name:UserLogin[indy].name,
-                    balance: UserLogin[indy].balance,
-                    password:UserLogin[indy].password
+                    balance:UserLogin[indy].balance,
+                    password:UserLogin[indy].password,
+                    number:UserLogin[indy].number,
+                    loan:UserLogin[indy].loan,
+                    E_account:UserLogin[indy].E_account
                 }
                 localStorage.setItem('logU', JSON.stringify(loggedinU));
                 window.location.href = 'UserHome.html'
