@@ -91,7 +91,7 @@ function createWindow() {
 
     win.setTitle('BankGUI-ElectronJS');
     win.loadFile('index.html');
-    win.webContents.openDevTools();
+    //win.webContents.openDevTools();
 }
 
 app.whenReady().then(createWindow);

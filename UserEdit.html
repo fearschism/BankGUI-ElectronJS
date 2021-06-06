@@ -14,17 +14,22 @@
        <h1 class="text-4xl ml-3 font-serif w-full select-none font-bold" id="user">{the welcome massege goes her}</h1>
        <div class="bg-gray-100 rounded-md h-3/5 m-7 block border-gray-200 border-l-8">
     <div class="block h-full space-y-3">
-        <p class="text-center text-gray-800 text-4xl font-semibold">Edit Account</p>
-        <div class="bg-red-500 h-1/6 ml-44 mr-44 text-center text-2xl grid font-semibold rounded-md"><label for="">Account number:</label><label for="" id="accno" class="text-red-200 font-bold">0000</label></div>
-    <div class="flex  m-20">
-        <div class="grid space-y-2">
-        <input type="text" class="w-96 h-14 border-gray-900 border-b-8 p-1" placeholder="Name" id="name" maxlength="14" disabled >
-        <small class="text-sm text-red-600 opacity-100" id="am">Test massege</small>
-        <input type="text" class="w-96 h-14 border-gray-900 border-b-8 p-1" placeholder="Password" id="pass" maxlength="14" disabled>
-        <small class="text-sm text-red-600 opacity-100" id="am">Test massege</small>
+        <p class="text-center text-gray-800 text-4xl font-semibold">Account Info</p>
+        <div class="bg-red-500 h-1/6 ml-44 mr-44 text-center text-2xl grid font-semibold rounded-md "><label for="">Account number</label><label for="" id="accno" class="text-red-200 font-bold">0000</label></div>
+    <div class="flex  m-20 ">
+        <div class="grid space-y-2 ">
+        <input type="text" class="w-96 h-14 border-gray-900 border-b-8 p-1 disabled:bg-gray-300 bg-white" placeholder="Name" id="name" maxlength="14" disabled >
+        <small class="text-sm text-red-600 opacity-0" id="nameE">Test massege</small>
+        <input type="password" class="w-96 h-14 border-gray-900 border-b-8 p-1 disabled:bg-gray-300 bg-white" placeholder="Password" id="pass" maxlength="14" disabled >
+        <small class="text-sm text-red-600 opacity-0" id="am">Test massege</small>
     </div>
     </div>
-        <div class="justify-end flex m-14"><button class="bg-gray-800 w-44 h-14 text-gray-50 hover:bg-gray-400 active:bg-gray-300 select-none rounded-md" id="ok">EDIT</button></div>
+    <div class="flex space-x-3  m-20">
+        <div class="bg-green-500 w-3/6 text-center text-2xl grid font-semibold rounded-md"><label for="" class="text-green-900 font-bold">Balance</label><label for="" id="bal1" class="text-green-200 font-bold text-sm">10000</label></div>
+        <div class="bg-yellow-500 h-3/6 w-3/6 text-center text-2xl grid font-semibold rounded-md"><label for="" class="text-yellow-900 font-bold">E-balance</label><label for="" id="ebal" class="text-yellow-200 font-bold text-sm">0000</label></div>
+        <div class="bg-blue-500 h-3/6 w-3/6 text-center text-2xl grid font-semibold rounded-md"><label for="" class="text-blue-900 font-bold">Loan</label><label for="" id="loan" class="text-blue-200 font-bold text-sm">0000</label></div>
+    </div>
+        <div class="justify-end flex m-14 "><button class="bg-gray-800 w-44 h-14 text-gray-50 hover:bg-gray-400 active:bg-gray-300 select-none rounded-md" id="ok">EDIT</button></div>
     </div>
     </div>
     <p>--Created by @fearSchism</p>
@@ -37,7 +42,50 @@
             <div class="space-x-1"><button class="bg-gray-800 rounded-md w-5/12 h-12 text-gray-50 hover:bg-gray-400 active:bg-gray-300" onclick="window.location.href = 'UserHome.html';">Home</button> <button class="bg-gray-800 rounded-md w-5/12 h-12 text-gray-50 hover:bg-gray-400 active:bg-gray-300" onclick="window.location.href = 'index.html';localStorage.removeItem('logU')">Logout</button></div>
         </div>
     </div>
-    <script>const user = JSON.parse(localStorage.getItem('logU'));$('#accno').text(user.number);$('#name').val(user.name);$('#pass').val(user.password);</script>
+    <script>const user = JSON.parse(localStorage.getItem('logU'));$('#accno').text(user.number);$('#name').val(user.name);$('#pass').val(user.password);$('#bal1').text(parseInt(user.balance));$('#ebal').text(parseInt(user.E_account.E_balance));$('#loan').text(parseInt(user.loan))</script>
+    <script>
+       const user2 = JSON.parse(localStorage.getItem('logU'));
+        const userarr = JSON.parse(localStorage.getItem('user'));var Ok = false;var open = true;var index=0;
+        $('#ok').click(function (e) {
+            e.preventDefault();
+            if(open) {
+            $('#name').prop('disabled', false);
+            $('#pass').prop('disabled', false);
+            $('#pass').attr('type', 'text');
+            $('#ok').text('OK');
+            open=!open
+            console.log(open);
+            }
+           else{
+            console.log("else")
+            Check();
+            const temp = user2.name;
+             if(Ok){
+            $('#name').prop('disabled', true);
+            $('#pass').prop('disabled',true);
+            $('#pass').attr('type', 'password');
+            $('#ok').text('EDIT');
+            user2.name=$('#name').val().trim();
+           user2.password=$('#pass').val().trim();
+           for(var i=0;i<userarr.length;i++){if(userarr[i].number == user2.number){userarr[i]=user2;console.log('changed')}};
+           localStorage.setItem('logU',JSON.stringify(user2));
+           localStorage.setItem('user',JSON.stringify(userarr));
+           window.location.href="UserEdit.html";
+            open = !open
+             }
+            }
+            
+        });
+
+        function Check(){//security
+        var k1=true;var k2=true;var k3=true;var k4=true; var checkID = true;var k5=true;var k6=true;Ok=false;
+        if($('#name').val().trim()==""){k1= false;console.log("Empty");$('#nameE').removeClass('opacity-0');$('#nameE').addClass('opacity-100');$('#nameE').text("Please Enter Name")}
+        if($('#pass').val().trim()==""){k2= false;console.log("Emptyp");$('#am').removeClass('opacity-0');$('#am').addClass('opacity-100');$('#am').text("Please Enter Password")}
+        for(var i=0;i<userarr.length;i++){if($('#name').val().trim() == userarr[i].name && $('#name').val().trim() != user2.name){checkID = false;index = i;console.log('checkArrayOk')}}
+        if(checkID==false && k1 ==true){k3 = false;$('#nameE').removeClass('opacity-0');$('#nameE').addClass('opacity-100');$('#nameE').text("Invalid name:- "+userarr[index].name+", already taken")}
+        if(k1&&k2&&k3){console.log('okCheck');Ok=true;$('#nameE').removeClass('opacity-100');$('#nameE').addClass('opacity-0');$('#am').removeClass('opacity-100');$('#am').addClass('opacity-0');$('#am').val("")}
+    }
+    </script>
     <script src="JS/userhome.js"></script>
 </body>
 </html>
