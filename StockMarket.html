@@ -5,16 +5,101 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/animation.css">
+    <link rel="stylesheet" href="tailwind.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>StockMarket-v0.0.1-alpha</title>
 </head>
-<body>
+<body class="bg-gray-900">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <!-- Preloader -->
     <div id="preloader">
-      <div id="status">&nbsp;</div>
+      <div id="status" >&nbsp;</div>
     </div>
-<h1>The Stock market is under development</h1>
-<button onclick="window.location.href= 'UserHome.html'">Return To Home</button>
+    <!-- Header -->
+    <div class="m-6 block">
+    <div class="w-full h-28 bg-gray-700 border-green-700 border-l-8 border-b-4 border-solid rounded-md text-center items-center ">
+      <div class=" justify-between flex mr-7 ml-7 py-8 text-gray-100">
+        <a href="UserHome.html" class="text-4xl hover:text-gray-400">Return</a>
+        <a href="#" class="text-4xl hover:text-gray-400 text-gray-400 underline">MYstocks</a>
+        <a href="" class="text-4xl hover:text-gray-400">Market</a>
+      </div>
+    </div>
+    <!-- DashBoard -->
+    <div class="flex py-4 ">
+      <!-- View dashboard // table -->
+      <div class="bg-gray-700 w-8/12 h-96  border-green-700  border-b-4 border-solid rounded-md overflow-auto">
+        <table class="table-fixed space-y-2">
+          <thead>
+          <tr class="bg-green-500 border-solid border-gray-600 border-b-8 border-collapse">
+            <th class="w-2/12 border-green-800 border-r-2 border-solid">Name</th>
+            <th class="w-1/12 border-green-800 border-r-2 border-solid">Symbol</th>
+            <th class="w-2/12 border-green-800 border-r-2 border-solid">Price</th>
+            <th class="w-1/12 border-green-800 border-r-2 border-solid">Change</th>
+            <th class="w-1/12 border-green-800 border-r-2 border-solid">NetChange</th>
+            <th class="w-2/12 border-green-800 border-r-2 border-solid">MYshares</th>
+            <th class="w-1/12">Sell</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+         <tr class="text-center bg-gray-500 hover:bg-gray-300 transition-all ease-in">
+            <td class="pb-2 font-semibold" id="Sname">SaadCoin1</td>
+            <td class="pb-2">SCC</td>
+            <td class="pb-2">50000$</td>
+            <td class="pb-2">+20%</td>
+            <td class="pb-2">+400.43</td>
+            <td class="pb-2">80000</td>
+            <td class="pb-2"><button class="bg-red-400 rounded-md w-16 hover:bg-red-500 sell" ><i class="fas fa-dollar-sign"></i></button></td>
+          </tr>
+          <tr class="text-center bg-gray-500 hover:bg-gray-300 transition-all ease-in">
+            <td class="pb-2 font-semibold" id="Sname">SaadCoin2</td>
+            <td class="pb-2">SCC</td>
+            <td class="pb-2">50000$</td>
+            <td class="pb-2">+20%</td>
+            <td class="pb-2">+400.43</td>
+            <td class="pb-2">80000</td>
+            <td class="pb-2"><button class="bg-red-400 rounded-md w-16 hover:bg-red-500 sell" ><i class="fas fa-dollar-sign "></i></button></td>
+          </tr>
+          <tr class="text-center bg-gray-500 hover:bg-gray-300 transition-all ease-in">
+            <td class="pb-2 font-semibold" id="Sname">SaadCoin3</td>
+            <td class="pb-2">SCC</td>
+            <td class="pb-2">50000$</td>
+            <td class="pb-2">+20%</td>
+            <td class="pb-2">+400.43</td>
+            <td class="pb-2">80000</td>
+            <td class="pb-2"><button class="bg-red-400 rounded-md w-16 hover:bg-red-500 sell" ><i class="fas fa-dollar-sign "></i></button></td>
+          </tr>
+        </tbody>
+        </table>
+      </div>
+      <!-- Infos and services -->
+      <div class="block px-3 space-y-4">
+        <div class="w-72 h-32 bg-green-700  border-gray-700 border-b-4 border-solid rounded-md">
+          <div class="block space-y-2">
+            <div class="grid text-green-900 text-xl bg-green-200 mx-5 rounded-md justify-center">
+              <label for="" class="text-center">Balance</label>
+              <label for="" class="text-center text-sm font-bold" id="bal">50000 $</label>
+            </div>
+            <div class="grid text-green-200 text-xl bg-green-900 mx-5 rounded-md justify-center">
+              <label for="" class="text-center">E_Balance</label>
+              <label for="" class="justify-center text-center text-sm font-bold" id="ebal">5000 $</label>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gray-600 w-72 h-60 border-green-700 border-b-4 border-solid rounded-md">
+          <!-- Block -->
+          <div class="block py-8 space-y-4">
+            <!-- checkbox -->
+            <div class="flex space-x-3  justify-center"><button class="disabled:bg-green-500 w-20 rounded-md bg-gray-400 disabled:cursor-not-allowed text-sm h-6 hover:bg-gray-200 transition-all ease-in">Withdraw</button><button class="disabled:bg-green-500 w-20 bg-gray-400 disabled:cursor-not-allowed text-sm rounded-md hover:bg-gray-200 transition-all ease-in" disabled >Deposit</button></div>
+            <!-- INPUT -->
+            <div class="grid  space-y-2 m-2"><input type="number" placeholder="Enter a number" class="h-10 p-2 rounded-md" maxlength="5" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"> <small class="opacity-1 text-red-500 text-xs">Error messege</small></div>
+            <!-- button -->
+            <div class="flex  m-10 justify-center"><button class="w-full bg-green-500 rounded-md hover:bg-green-300 transition-all ease-in">OK</button></div>
+          </div> 
+        </div>
+      </div> 
+    </div>
+  </div>
 
  <script>
         $(window).on('load', function() { // makes sure the whole site is loaded 
@@ -22,7 +107,19 @@
   $('#preloader').delay(3000).fadeOut('slow'); // will fade out the white DIV that covers the website. 
   $('body').delay(350).css({'overflow':'visible'});
 })
-    
+</script>
+<script>
+  var thisuser = JSON.parse(localStorage.getItem('logU'))
+  console.log(thisuser.E_account.E_balance)
+  $('#bal').text(thisuser.balance+" $");$('#ebal').text(thisuser.E_account.E_balance +" $");
+</script>
+<script>
+  const stocks = ['saadCoin','piCoin','byteCoin','tobiCoin','hashBrown','','','']
+  //sell button
+  $(document).on('click','.sell', function(){
+    console.log($(this).closest('tr').find('#Sname').html());
+    $(this).parents('tr').remove();
+  }) 
 </script>
 </body>
 </html>
