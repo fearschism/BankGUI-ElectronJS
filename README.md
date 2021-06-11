@@ -1,5 +1,6 @@
 # BankGUI-ElectronJS
-Building my BankGUI(java edition) into javaScript from scratch 
+Building my BankGUI(java edition) into javaScript from scratch
+###this project is heavy on jquery. that's why its 70%+ html
 
 Gonna include:
 - Login Page(User/Client, and Admin)
