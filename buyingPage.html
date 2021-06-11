@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="tailwind.css">
+   <link rel="stylesheet" href="css/scrollbar.css">
+   <link rel="stylesheet" href="css/ldbtn.min.css"> 
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>StockMarket-v0.0.1-alpha</title>
+</head>
+<body class="bg-gray-900 select-none">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- Header -->
+    <div class="m-6 block">
+    <div class="w-full h-28 bg-gray-700 border-green-700 border-l-8 border-b-4 border-solid rounded-md text-center items-center ">
+      <div class=" justify-between flex mr-7 ml-7 py-8 text-gray-100">
+        <a href="UserHome.html" class="text-4xl hover:text-gray-400">Return</a>
+        <a href="StockMarket.html" class="text-4xl hover:text-gray-400">MYstocks</a>
+        <a href="Market.html" class="text-4xl hover:text-gray-400">Market</a>
+      </div>
+    </div>
+    <!-- DashBoard -->
+    <div class="flex py-4 ">
+      <!-- View dashboard // table -->
+      <div class="bg-gray-700 w-8/12 h-96  border-green-700  border-b-4 border-t-4 border-l-4 border-solid rounded-md ">
+        <div class="block mx-10 my-5  space-y-10">
+            <!-- Stocks info -->
+            <div class="flex space-x-3   justify-evenly text-center">
+                <div class="grid bg-green-200 w-32 h-12 rounded-sm ">
+                    <label for="" class="font-semibold">Name</label>
+                    <label for="" class="text-xs font-semibold" id="stockname">N</label>
+                </div>
+                <div class="grid bg-green-400 w-32 h-12  rounded-sm ">
+                    <label for="" class="font-semibold">Price</label>
+                    <label for="" class="text-xs font-semibold" id="stockprice">N</label>
+                </div>
+                <div class="grid bg-green-600 w-32 h-12  rounded-sm ">
+                    <label for="" class="font-semibold">MyShares</label>
+                    <label for="" class="text-xs font-semibold" id="stockshares">N</label>
+                </div>
+            </div>
+            <!-- input and error -->
+            <div class="grid">
+                <div class="flex space-x-2">
+                    <label for="" class="text-2xl text-gray-50 font-semibold">Shares:</label>
+                    <input type="number" id="insh" class="w-full h-10 p-2 border-b-8 border-green-600 border-solid" maxlength="5" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                    <button class="bg-green-500 w-20" id="convert"><i class="fas fa-retweet"></i></button>
+                </div>
+                <small class="mx-20 text-base text-red-500 opacity-0" id="em">Error</small>
+            </div>
+            <!-- result and buy -->
+            <div class="flex  mx-20 justify-between">
+                <div class="grid bg-green-200 w-32 h-12 rounded-sm text-center">
+                    <label for="">Amount</label>
+                    <label for="" class="text-xs font-semibold" id="convertedam">0$</label>
+                </div>
+                <button class="bg-green-500 w-24 rounded-sm" id="buy"><i class="fas fa-shopping-cart text-green-100"></i></button>
+            </div>
+        </div>
+      </div>
+      <!-- Infos and services -->
+      <div class="block px-3 space-y-4">
+        <div class="w-72 h-32 bg-green-700  border-gray-700 border-b-4 border-solid rounded-md">
+          <div class="block space-y-2">
+            <div class="grid text-green-900 text-xl bg-green-200 mx-5 rounded-md justify-center">
+              <label for="" class="text-center">Balance</label>
+              <label for="" class="text-center text-sm font-bold" id="bal">50000 $</label>
+            </div>
+            <div class="grid text-green-200 text-xl bg-green-900 mx-5 rounded-md justify-center">
+              <label for="" class="text-center">E_Balance</label>
+              <label for="" class="justify-center text-center text-sm font-bold" id="ebal">5000 $</label>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gray-600 w-72 h-60 border-green-700 border-b-4 border-solid rounded-md">
+          <!-- Block -->
+          <div class="block py-8 space-y-4">
+            <!-- checkbox -->
+            <div class="flex space-x-3  justify-center"><button class="disabled:bg-green-500 w-20 rounded-md bg-gray-400 disabled:cursor-not-allowed text-sm h-6 hover:bg-gray-200 transition-all ease-in" id="W">Withdraw</button><button class="disabled:bg-green-500 w-20 bg-gray-400 disabled:cursor-not-allowed text-sm rounded-md hover:bg-gray-200 transition-all ease-in" id="D" disabled >Deposit</button></div>
+            <!-- INPUT -->
+            <div class="grid  space-y-2 m-2"><input type="number" id="in" placeholder="Enter a number" class="h-10 p-2 rounded-md" maxlength="5" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"> <small class="opacity-0 text-red-500 text-xs select-none" id="error">Error messege</small></div>
+            <!-- button -->
+            <div class="flex  m-10 justify-center"><button class="w-full  bg-green-500 rounded-md hover:bg-green-300 transition-all ease-in" id="ok">OK</button></div>
+          </div> 
+        </div>
+      </div> 
+    </div>
+  </div>
+  <!-- Starts the storage for the stocks -->
+<script src="JS/StockStarter.js"></script>
+<script>
+    var tempstock = JSON.parse(localStorage.getItem('temp'));
+    $('#stockname').text(tempstock.name);$('#stockprice').text(tempstock.price+" $");$('#stockshares').text(tempstock.shares);
+</script>
+<script>
+  var thisuser = JSON.parse(localStorage.getItem('logU'))
+  console.log(thisuser.E_account.E_balance)
+  $('#bal').text(thisuser.balance+" $");$('#ebal').text(thisuser.E_account.E_balance +" $");
+</script>
+
+<script>
+  var thisuser = JSON.parse(localStorage.getItem('logU'));
+  var users = JSON.parse(localStorage.getItem('user'));
+  
+  var OkW = false;var OkD = true;var okok;
+  $('#D').click(function (e) { 
+    e.preventDefault();
+     OkW = false;$('#D').prop('disabled',true);
+      OkD = true;$('#W').prop('disabled',false);
+  });
+  $('#W').click(function (e) { 
+    e.preventDefault();
+     OkW = true;$('#D').prop('disabled',false);
+      OkD = false;$('#W').prop('disabled',true);
+  });
+  var index=0;
+  for(var i=0;i<users.length;i++){
+    if(thisuser.name == users[i].name){index =i};
+  }
+  $('#ok').click(function (e) { 
+    e.preventDefault();
+    Check();
+    if(okok) {
+    if(OkD){thisuser.balance = parseFloat(thisuser.balance)-parseFloat($('#in').val());thisuser.E_account.E_balance=parseFloat(thisuser.E_account.E_balance)+parseFloat($('#in').val());localStorage.setItem('logU',JSON.stringify(thisuser));users[index]=thisuser;localStorage.setItem('user',JSON.stringify(users));window.location.href=''}
+    else if(OkW){thisuser.balance = parseFloat(thisuser.balance)+parseFloat($('#in').val());thisuser.E_account.E_balance=parseFloat(thisuser.E_account.E_balance)-parseFloat($('#in').val());localStorage.setItem('logU',JSON.stringify(thisuser));users[index]=thisuser;localStorage.setItem('user',JSON.stringify(users));window.location.href=''}
+    }
+  });
+  function Check() {
+    var notempty = true; var notnegative=true;var funds1=true;var funds2=true;okok=false
+    if($('#in').val()==null||$('#in').val()==""){notempty=false;$('#error').removeClass('opacity-0');$('#error').addClass('opacity-1');$('#error').text("Please Enter a number");}
+    if(parseFloat($('#in').val())>60000||parseFloat($('#in').val())<=0){notnegative=false;$('#error').removeClass('opacity-0');$('#error').addClass('opacity-1');$('#error').text("Limit is 60,000$ and must be positive");}
+    if(parseFloat(thisuser.balance)<parseFloat($('#in').val()) &&OkD){funds1=false;$('#error').removeClass('opacity-0');$('#error').addClass('opacity-1');$('#error').text("Balance: "+thisuser.balance+" $");}
+    if(parseFloat(thisuser.E_account.E_balance)<parseFloat($('#in').val()) &&OkW){funds2=false;$('#error').removeClass('opacity-0');$('#error').addClass('opacity-1');$('#error').text("E_Balance: "+thisuser.E_account.E_balance+" $");}
+    if(notempty&&notnegative&&funds1&&funds2){okok=true;$('#error').removeClass('opacity-1');$('#error').addClass('opacity-0');console.log('okok')}
+  }
+</script>
+<script>
+    const ss = JSON.parse(localStorage.getItem('stocks'));
+   const coin = JSON.parse(localStorage.getItem('coins'));
+    var okok2;var isconverted=false;
+    $('#convert').click(function (e) { 
+        e.preventDefault();
+        Check2()
+        if(okok2) {
+            isconverted = true;
+            $('#convertedam').text(parseFloat($('#insh').val())* parseInt(tempstock.price)+" $");
+        }
+    });
+   function Check2() {
+    var notempty = true; var notnegative=true;var funds1=true;var funds2=true;okok2=false
+    if($('#insh').val()==null||$('#insh').val()==""){notempty=false;$('#em').removeClass('opacity-0');$('#em').addClass('opacity-1');$('#em').text("Please Enter a number");}
+    if(parseFloat($('#insh').val())>60000||parseFloat($('#insh').val())<=0){notnegative=false;$('#em').removeClass('opacity-0');$('#em').addClass('opacity-1');$('#em').text("Limit is 60,000$ and must be positive");}
+    if(notempty&&notnegative){okok2=true;$('#em').removeClass('opacity-1');$('#em').addClass('opacity-0');console.log('okok2')}
+  }
+  $('#buy').click(function (e) { 
+      e.preventDefault();var okCoin=false;var okStock=false;var index2;
+      if(isconverted){console.log("bought");
+        for(var i=0;i<coin.length;i++){if(tempstock.name == coin[i].name){okCoin=true;index2 =i}}
+        for(var i=0;i<ss.length;i++){if(tempstock.name == ss[i].name){okStock=true;index2 =i}}
+        if(parseFloat($('#convertedam').html())<=parseFloat(thisuser.E_account.E_balance)) {
+        if(okCoin){thisuser.E_account.E_balance=parseFloat(thisuser.E_account.E_balance)-parseFloat(parseInt($('#insh').val())* parseInt(tempstock.price));thisuser.E_account.coins[coin[index2].name].shares = parseInt($('#insh').val()) ;localStorage.setItem('logU',JSON.stringify(thisuser));users[index]=thisuser;localStorage.setItem('user',JSON.stringify(users));window.location.href='StockMarket.html'}
+        if(okStock){thisuser.E_account.E_balance=parseFloat(thisuser.E_account.E_balance)-parseFloat(parseInt($('#insh').val())* parseInt(tempstock.price));thisuser.E_account.stocks[ss[index2].name].shares = parseInt($('#insh').val()) ;localStorage.setItem('logU',JSON.stringify(thisuser));users[index]=thisuser;localStorage.setItem('user',JSON.stringify(users));window.location.href='StockMarket.html'}
+        }
+        else{
+            $('#em').removeClass('opacity-0');$('#em').addClass('opacity-1');$('#em').text("insufficient funds");
+        }
+    }
+      else{$('#em').removeClass('opacity-0');$('#em').addClass('opacity-1');$('#em').text("Please use the convert button!");}
+  });
+</script>
+</body>
+</html>

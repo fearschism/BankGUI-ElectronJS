@@ -9,6 +9,7 @@
    "Stocks":{
     "name":"TestStock",
     "symbol":"TTS",
+    "Pprice":null,
     "price":"0.000005",
     "net-change":"0.00",
     "percent-net-change":"0.00"

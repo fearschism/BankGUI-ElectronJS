@@ -118,7 +118,7 @@
             console.log(password);
             for(var i=0;i<AdminsLogin.length;i++) {if(username == AdminsLogin[i].name && password == AdminsLogin[i].password){console.log("welcome Admin");indy = i;var okokA = true}}
             for(var i=0;i<UserLogin.length;i++) {if(username == UserLogin[i].name && password == UserLogin[i].password){console.log("welcome User");indy = i;var okokU = true}}
-            if(username =='erase' &&password=='1'){localStorage.removeItem('user');console.log('ok');window.location.href="index.html"}
+            if(username =='erase' &&password=='1'){localStorage.removeItem('user');console.log('ok');localStorage.removeItem('coins');localStorage.removeItem('stocks');window.location.href=''}
             if(okokA){
             ErrorN.classList.remove('opacity-1');ErrorN.classList.add('opacity-0');
             }

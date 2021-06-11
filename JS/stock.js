@@ -55,3 +55,5 @@ var user = {
         }
     }
 }
+
+var htmlS = `<tr class="text-center bg-gray-500 hover:bg-gray-300 transition-all ease-in"><td class="pb-2 font-semibold">${name}</td><td class="pb-2">${SYM}</td><td class="pb-2">${price}</td><td class="pb-2">${percentage}</td><td class="pb-2">${netchange}</td><td class="pb-2">${shares}</td><td class="pb-2"><button class="bg-red-400 rounded-md w-16 hover:bg-red-500 sell" ><i class="fas fa-dollar-sign"></i></button></td></tr>`

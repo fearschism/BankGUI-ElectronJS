@@ -17,8 +17,8 @@
     <div class="w-full h-28 bg-gray-700 border-green-700 border-l-8 border-b-4 border-solid rounded-md text-center items-center ">
       <div class=" justify-between flex mr-7 ml-7 py-8 text-gray-100">
         <a href="UserHome.html" class="text-4xl hover:text-gray-400">Return</a>
-        <a href="#" class="text-4xl hover:text-gray-400 text-gray-400 underline">MYstocks</a>
-        <a href="Market.html" class="text-4xl hover:text-gray-400">Market</a>
+        <a href="StockMarket.html" class="text-4xl hover:text-gray-400">MYstocks</a>
+        <a href="#" class="text-4xl hover:text-gray-400 text-gray-400 underline">Market</a>
       </div>
     </div>
     <!-- DashBoard -->
@@ -34,7 +34,7 @@
             <th class="w-1/12 border-green-800 border-r-2 border-solid">Change</th>
             <th class="w-1/12 border-green-800 border-r-2 border-solid">NetChange</th>
             <th class="w-2/12 border-green-800 border-r-2 border-solid">MYshares</th>
-            <th class="w-1/12">Sell</th>
+            <th class="w-1/12">Buy</th>
           </tr>
         </thead>
         <tbody>
@@ -90,68 +90,42 @@
 </script>
 <script>
     var thisuser = JSON.parse(localStorage.getItem('logU'));
-   const coin2 = JSON.parse(localStorage.getItem('coins'))
-  // for(var i=0;coin2.length;i++){if(coin2[i].price<=0){coin2[i].price = 1}};
-   const coin = ['saadCoin','piCoin','byteCoin','tobiCoin','hashBrown'];
-  var hi = 'saad';
-  var emptyM = ` <tr class="text-center bg-gray-500 hover:bg-gray-300 transition-all ease-in">
-            <td class="pb-2 font-semibold" id="Sname">No stocks</td>
-          </tr>`
+   const ss = JSON.parse(localStorage.getItem('stocks'))
+   const coin = JSON.parse(localStorage.getItem('coins'))
   for(var i=0;coin.length;i++) {
-    var st=coin[i];var ii=0;//for(var i=0;i<){}
-    if(coin2[i].price<=0){coin2[i].price = 1}
-    if(parseFloat(thisuser.E_account.coins[st].shares)>0){
-    var row =  `<tr class="text-center bg-gray-500 hover:bg-gray-300 transition-all ease-in">
-            <td class="pb-2 font-semibold" id="Sname">${coin[i]}</td>
-            <td class="pb-2">${coin2[i].symbol}</td>
-            <td class="pb-2" id="price">${coin2[i].price}$</td>
-            <td class="pb-2">${coin2[i].percent_net_change}%</td>
-            <td class="pb-2">${coin2[i].net_change}</td>
-            <td class="pb-2" id="sh">${thisuser.E_account.coins[coin[i]].shares}</td>
-            <td class="pb-2"><button class="bg-red-400 rounded-md w-16 hover:bg-red-500 sell" ><i class="fas fa-dollar-sign "></i></button></td>
+    var row =  `<tr class="text-center bg-gray-500 hover:bg-green-300 transition-all ease-in">
+            <td class="pb-2 font-semibold" id="Sname">${coin[i].name}</td>
+            <td class="pb-2">${coin[i].symbol}</td>
+            <td class="pb-2" id="price">${coin[i].price}$</td>
+            <td class="pb-2">${coin[i].percent_net_change}</td>
+            <td class="pb-2">${coin[i].net_change}</td>
+            <td class="pb-2" id="sh">${thisuser.E_account.coins[coin[i].name].shares}</td>
+            <td class="pb-2"><button class="bg-green-400 rounded-md w-16 hover:bg-green-500 sell" ><i class="fas fa-shopping-cart text-gray-800"></i></button></td>
           </tr>`
     $('tbody').append(row);
-    console.log(st);
-        }
-  }
-  function Empty() {if(document.getElementById("tt").tBodies[0].rows.length ==0) {
-    $('tbody').append(emptyM);
-  }}
-  Empty();
-</script>
-<script>
-  const ss = JSON.parse(localStorage.getItem('stocks'))
-  //for(var i=0;ss.length;i++){if(ss[i].price<=0){ss[i].price = 1}}
-  for(var i=0;ss.length;i++) {
-    var st=ss[i].name;var ii=0;//for(var i=0;i<){}
-    if(ss[i].price<=0){ss[i].price = 1}
-    if(parseFloat(thisuser.E_account.stocks[st].shares)>0){
-    var row =  `<tr class="text-center bg-gray-500 hover:bg-gray-300 transition-all ease-in">
-            <td class="pb-2 font-semibold" id="Sname">${ss[i].name}</td>
-            <td class="pb-2">${ss[i].symbol}</td>
-            <td class="pb-2" id="price">${ss[i].price}$</td>
-            <td class="pb-2">${ss[i].percent_net_change}%</td>
-            <td class="pb-2">${ss[i].net_change}</td>
-            <td class="pb-2" id="sh">${thisuser.E_account.stocks[ss[i].name].shares}</td>
-            <td class="pb-2"><button class="bg-red-400 rounded-md w-16 hover:bg-red-500 sell" ><i class="fas fa-dollar-sign "></i></button></td>
-          </tr>`
-    $('tbody').append(row);
-    console.log(st);
-        }
+        
   }
 </script>
 <script>
-  const coin1 = ['saadCoin','piCoin','byteCoin','tobiCoin','hashBrown'];
-  const stock = ['GMR','muve','blkBucks','zaitco','gst'];
+for(var i=0;ss.length;i++) {
+    console.log(ss[i].name);
+  var row =  `<tr class="text-center hover:bg-green-500 transition-all ease-in text-gray-50">
+          <td class="pb-2 font-semibold" id="Sname">${ss[i].name}</td>
+          <td class="pb-2">${ss[i].symbol}</td>
+          <td class="pb-2" id="price">${ss[i].price}$</td>
+          <td class="pb-2">${ss[i].percent_net_change}</td>
+          <td class="pb-2">${ss[i].net_change}</td>
+          <td class="pb-2" id="sh">${thisuser.E_account.stocks[ss[i].name].shares}</td>
+          <td class="pb-2"><button class="bg-gray-800 rounded-md w-16 hover:bg-gray-600 sell" ><i class="fas fa-shopping-cart text-green-400"></i></button></td>
+        </tr>`
+  $('tbody').append(row);
+      
+}
+</script>
+
+<script>
   var thisuser = JSON.parse(localStorage.getItem('logU'));
   var users = JSON.parse(localStorage.getItem('user'));
-  var emptyM = ` <tr class="text-center bg-gray-500 hover:bg-red-300 transition-all ease-in">
-            <td class="pb-2 font-semibold" id="Sname">No stocks</td>
-          </tr>`
-  function Empty() {if(document.getElementById("tt").tBodies[0].rows.length <=0) {
-    $('tbody').append(emptyM);
-  }}
-  Empty();
   
   var OkW = false;var OkD = true;var okok;
   $('#D').click(function (e) { 
@@ -184,21 +158,20 @@
     if(parseFloat(thisuser.E_account.E_balance)<parseFloat($('#in').val()) &&OkW){funds2=false;$('#error').removeClass('opacity-0');$('#error').addClass('opacity-1');$('#error').text("E_Balance: "+thisuser.E_account.E_balance+" $");}
     if(notempty&&notnegative&&funds1&&funds2){okok=true;$('#error').removeClass('opacity-1');$('#error').addClass('opacity-0');console.log('okok')}
   }
-  //sell button
-  $(document).on('click','.sell', function(){
-    console.log($(this).closest('tr').find('#Sname').html());var okCoin=false;var okStock=false;
-    console.log($(this).closest('tr').find('#price').html());
-    console.log($(this).closest('tr').find('#sh').html());
-    var pp = parseInt($(this).closest('tr').find('#price').html())*parseInt($(this).closest('tr').find('#sh').html())
-    for(var i=0;i<coin1.length;i++){if($(this).closest('tr').find('#Sname').html()==coin1[i]){okCoin=true}}
-    for(var i=0;i<stock.length;i++){if($(this).closest('tr').find('#Sname').html()==stock[i]){okStock=true}}
-    if(okCoin){thisuser.E_account.coins[$(this).closest('tr').find('#Sname').html()].shares=parseInt(thisuser.E_account.coins[$(this).closest('tr').find('#Sname').html()].shares)-parseInt($(this).closest('tr').find('#sh').html())}
-    if(okStock){thisuser.E_account.stocks[$(this).closest('tr').find('#Sname').html()].shares=parseInt(thisuser.E_account.stocks[$(this).closest('tr').find('#Sname').html()].shares)-parseInt($(this).closest('tr').find('#sh').html())}
-   thisuser.E_account.E_balance=parseFloat(thisuser.E_account.E_balance)+pp;localStorage.setItem('logU',JSON.stringify(thisuser));users[index]=thisuser;localStorage.setItem('user',JSON.stringify(users));
-    $(this).parents('tr').remove();
-    Empty();
-    window.location.href='';
-  }) 
+</script>
+
+<script>
+$(document).on('click','.sell', function(){
+    let tempstock ={
+        name:$(this).closest('tr').find('#Sname').html(),
+        price:parseFloat($(this).closest('tr').find('#price').html()),
+        shares:parseFloat($(this).closest('tr').find('#sh').html())
+    }
+    localStorage.setItem('temp',JSON.stringify(tempstock));
+    window.location.href ='buyingPage.html';
+})
+
+
 </script>
 </body>
 </html>

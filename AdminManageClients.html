@@ -57,7 +57,10 @@ var httpUser;
 var index = 0;
 var boolprev;var boolnext;
  var UserINFO =JSON.parse(localStorage.getItem('user')); //name password, and balance goes here from file
- if(UserINFO.length==1){remove.disabled=true;next.disabled=true}else{remove.disabled=false;next.disabled=false};
+ if(UserINFO.length==1){remove.disabled=true;next.disabled=true;EditName.disabled=true}else{remove.disabled=false;next.disabled=false;EditName.disabled=false};
+ function num1() {
+    if(UserINFO.length==1){remove.disabled=true;next.disabled=true}else{remove.disabled=false;next.disabled=false};
+ }
  if(UserINFO.length>=10){add.disabled=true;}else{add.disabled=false;};
  Writer(index);
 EditName.addEventListener('click',()=>{
@@ -74,9 +77,9 @@ EditName.addEventListener('click',()=>{
     if(prev.disabled == false){prev.disabled = true; boolprev = true;console.log('pred r')}
     open = !open;
     switchedit = true
-    
+    num1();
     }
-    else {CC();if(okCC){UserINFO[index].name =document.querySelector('#nnn').value;UserINFO[index].balance = document.querySelector('#bal').value ;UserINFO[index].password= document.querySelector('#pass').value;document.querySelector('#pass').disabled = true;document.querySelector('#bal').disabled = true;document.querySelector('#nnn').disabled = true;EditName.innerHTML = "Edit"; if(boolnext == true){next.disabled = false;console.log('next r')};if(boolprev== true){prev.disabled = false;console.log('ptrv r')};boolnext = false; boolprev = false;localStorage.setItem('user',JSON.stringify(UserINFO));add.disabled=false;remove.disabled=false;open = !open;}} //check duplication here.
+    else {CC();if(okCC){UserINFO[index].name =document.querySelector('#nnn').value;UserINFO[index].balance = document.querySelector('#bal').value ;UserINFO[index].password= document.querySelector('#pass').value;document.querySelector('#pass').disabled = true;document.querySelector('#bal').disabled = true;document.querySelector('#nnn').disabled = true;EditName.innerHTML = "Edit"; if(boolnext == true){next.disabled = false;console.log('next r')};if(boolprev== true){prev.disabled = false;console.log('ptrv r')};boolnext = false; boolprev = false;localStorage.setItem('user',JSON.stringify(UserINFO));add.disabled=false;remove.disabled=false;open = !open; num1();}} //check duplication here.
 })
 function CC() {
     var arrok  = true;var emptyok;var emptyok2;var splitok;var balok;var passok;

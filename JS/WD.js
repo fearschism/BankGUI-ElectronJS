@@ -24,10 +24,9 @@ btnOk.addEventListener('click', ()=>{
     if(okfinal) {
         console.log(okfinal)
         console.log(input.value);
-        if(OkW){console.log("W");user.balance-=input.value;console.log(user.balance);localStorage.setItem('logU',JSON.stringify(user));for(var i=0;i<U.length;i++){if( user.name == U[i].name ){console.log("replaced");index =i;}};U[index]=user;localStorage.setItem('user',JSON.stringify(U))}
-        if(OkD){console.log("D");user.balance=parseInt(user.balance)+parseInt(input.value);user.loan=parseInt(input.value);console.log(user.balance);localStorage.setItem('logU',JSON.stringify(user));for(var i=0;i<U.length;i++){if( user.name == U[i].name ){console.log("replaced");index =i;}};U[index]=user;localStorage.setItem('user',JSON.stringify(U))}
-    }
-})
+        if(OkW){if(user.balance>0){ErrorM.classList.add('opacity-0');ErrorM.classList.remove('opacity-100');console.log("W");user.balance-=input.value;console.log(user.balance);localStorage.setItem('logU',JSON.stringify(user));for(var i=0;i<U.length;i++){if( user.name == U[i].name ){console.log("replaced");index =i;}};U[index]=user;localStorage.setItem('user',JSON.stringify(U))}else{ErrorM.innerHTML="insufficent Funds";ErrorM.classList.remove('opacity-0');ErrorM.classList.add('opacity-100')};window.location.href=''}
+        if(OkD){console.log("D");user.balance=parseInt(user.balance)+parseInt(input.value);user.loan=parseInt(input.value);console.log(user.balance);localStorage.setItem('logU',JSON.stringify(user));for(var i=0;i<U.length;i++){if( user.name == U[i].name ){console.log("replaced");index =i;}};U[index]=user;localStorage.setItem('user',JSON.stringify(U));window.location.href=''}
+}})
 function Check() {
     var ok1=true;var ok2=true;var ok3=true;var ok4=true;var ok5 = true;
 if(parseInt(input.value)>5000){ok1=false;ErrorM.innerHTML = "5000$ is the limit per transaction";ErrorM.classList.remove('opacity-0');ErrorM.classList.add('opacity-100')}
