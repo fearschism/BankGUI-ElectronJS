@@ -97,7 +97,7 @@
 <script>
   var thisuser = JSON.parse(localStorage.getItem('logU'))
   console.log(thisuser.E_account.E_balance)
-  $('#bal').text(thisuser.balance+" $");$('#ebal').text(thisuser.E_account.E_balance +" $");
+  $('#bal').text(thisuser.balance.toFixed(2)+" $");$('#ebal').text(thisuser.E_account.E_balance.toFixed(2) +" $");
 </script>
 
 <script>
@@ -145,7 +145,7 @@
         Check2()
         if(okok2) {
             isconverted = true;
-            $('#convertedam').text(parseFloat($('#insh').val())* parseInt(tempstock.price)+" $");
+            $('#convertedam').text(parseFloat($('#insh').val())* parseFloat(tempstock.price.toFixed(2))+" $");
         }
     });
    function Check2() {
@@ -160,8 +160,8 @@
         for(var i=0;i<coin.length;i++){if(tempstock.name == coin[i].name){okCoin=true;index2 =i}}
         for(var i=0;i<ss.length;i++){if(tempstock.name == ss[i].name){okStock=true;index2 =i}}
         if(parseFloat($('#convertedam').html())<=parseFloat(thisuser.E_account.E_balance)) {
-        if(okCoin){thisuser.E_account.E_balance=parseFloat(thisuser.E_account.E_balance)-parseFloat(parseInt($('#insh').val())* parseInt(tempstock.price));thisuser.E_account.coins[coin[index2].name].shares = parseInt($('#insh').val()) ;localStorage.setItem('logU',JSON.stringify(thisuser));users[index]=thisuser;localStorage.setItem('user',JSON.stringify(users));window.location.href='StockMarket.html'}
-        if(okStock){thisuser.E_account.E_balance=parseFloat(thisuser.E_account.E_balance)-parseFloat(parseInt($('#insh').val())* parseInt(tempstock.price));thisuser.E_account.stocks[ss[index2].name].shares = parseInt($('#insh').val()) ;localStorage.setItem('logU',JSON.stringify(thisuser));users[index]=thisuser;localStorage.setItem('user',JSON.stringify(users));window.location.href='StockMarket.html'}
+        if(okCoin){thisuser.E_account.E_balance=parseFloat(thisuser.E_account.E_balance)-parseFloat(parseFloat($('#insh').val())* parseFloat(tempstock.price));thisuser.E_account.coins[coin[index2].name].shares = parseFloat(thisuser.E_account.coins[coin[index2].name].shares)+parseFloat($('#insh').val()) ;localStorage.setItem('logU',JSON.stringify(thisuser));users[index]=thisuser;localStorage.setItem('user',JSON.stringify(users));window.location.href='StockMarket.html'}
+        if(okStock){thisuser.E_account.E_balance=parseFloat(thisuser.E_account.E_balance)-parseFloat(parseFloat($('#insh').val())* parseFloat(tempstock.price));thisuser.E_account.stocks[ss[index2].name].shares = parseFloat(thisuser.E_account.stocks[ss[index2].name].shares)+parseFloat($('#insh').val()) ;localStorage.setItem('logU',JSON.stringify(thisuser));users[index]=thisuser;localStorage.setItem('user',JSON.stringify(users));window.location.href='StockMarket.html'}
         }
         else{
             $('#em').removeClass('opacity-0');$('#em').addClass('opacity-1');$('#em').text("insufficient funds");

@@ -74,19 +74,19 @@
             <!-- INPUT -->
             <div class="grid  space-y-2 m-2"><input type="number" id="in" placeholder="Enter a number" class="h-10 p-2 rounded-md" maxlength="5" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"> <small class="opacity-0 text-red-500 text-xs select-none" id="error">Error messege</small></div>
             <!-- button -->
-            <div class="flex  m-10 justify-center"><button class="w-full  bg-green-500 rounded-md hover:bg-green-300 transition-all ease-in" id="ok">OK</button></div>
-          </div> 
+            
+            <div class="flex  m-10 justify-center"><button class="w-full  bg-green-500 rounded-md hover:bg-green-300 transition-all ease-in" id="ok">OK</button></div>          </div> 
         </div>
       </div> 
     </div>
-    <div class=" w-8/12 flex justify-center"><button class="focus:outline-none bg-green-200 rounded-lg shadow-lg drop-shadow-lg  hover:bg-green-100"><i class="fas fa-angle-double-right text-green-700 text-7xl hover:text-green-500"></i></button></div>
+    <div class=" w-8/12 flex justify-center"><button class="focus:outline-none bg-green-200 rounded-lg shadow-lg drop-shadow-lg  hover:bg-green-100" id="day"><i class="fas fa-angle-double-right text-green-700 text-7xl hover:text-green-500"></i></button></div>
   </div>
   <!-- Starts the storage for the stocks -->
 <script src="JS/StockStarter.js"></script> 
 <script>
   var thisuser = JSON.parse(localStorage.getItem('logU'))
   console.log(thisuser.E_account.E_balance)
-  $('#bal').text(thisuser.balance+" $");$('#ebal').text(thisuser.E_account.E_balance +" $");
+  $('#bal').text(thisuser.balance.toFixed(2)+" $");$('#ebal').text(thisuser.E_account.E_balance.toFixed(2) +" $");
 </script>
 <script>
     var thisuser = JSON.parse(localStorage.getItem('logU'));
@@ -99,20 +99,52 @@
           </tr>`
   for(var i=0;coin.length;i++) {
     var st=coin[i];var ii=0;//for(var i=0;i<){}
-    if(coin2[i].price<=0){coin2[i].price = 1}
+    if(coin2[i].Pprice==coin2[i].price){coin2[i].price = Math.random()*150 +1}
+    if(coin2[i].Pprice == null || coin2[i].Pprice ==coin2[i].price){
     if(parseFloat(thisuser.E_account.coins[st].shares)>0){
     var row =  `<tr class="text-center bg-gray-500 hover:bg-gray-300 transition-all ease-in">
             <td class="pb-2 font-semibold" id="Sname">${coin[i]}</td>
             <td class="pb-2">${coin2[i].symbol}</td>
-            <td class="pb-2" id="price">${coin2[i].price}$</td>
-            <td class="pb-2">${coin2[i].percent_net_change}%</td>
-            <td class="pb-2">${coin2[i].net_change}</td>
+            <td class="pb-2" id="price">${coin2[i].price.toFixed(1)}$</td>
+            <td class="pb-2">${coin2[i].percent_net_change.toFixed(1)}%</td>
+            <td class="pb-2">${coin2[i].net_change.toFixed(1)}</td>
             <td class="pb-2" id="sh">${thisuser.E_account.coins[coin[i]].shares}</td>
             <td class="pb-2"><button class="bg-red-400 rounded-md w-16 hover:bg-red-500 sell" ><i class="fas fa-dollar-sign "></i></button></td>
           </tr>`
     $('tbody').append(row);
     console.log(st);
         }
+      }
+     else if(coin2[i].Pprice>coin2[i].price){
+    if(parseFloat(thisuser.E_account.coins[st].shares)>0){
+    var row =  `<tr class="text-center bg-gray-500 hover:bg-gray-300 transition-all ease-in">
+            <td class="pb-2 font-semibold" id="Sname">${coin[i]}</td>
+            <td class="pb-2">${coin2[i].symbol}</td>
+            <td class="pb-2 text-red-700" id="price">${coin2[i].price.toFixed(1)}$</td>
+            <td class="pb-2 text-red-700">${coin2[i].percent_net_change.toFixed(1)}%</td>
+            <td class="pb-2 text-red-700">${coin2[i].net_change.toFixed(1)}</td>
+            <td class="pb-2" id="sh">${thisuser.E_account.coins[coin[i]].shares}</td>
+            <td class="pb-2"><button class="bg-red-400 rounded-md w-16 hover:bg-red-500 sell" ><i class="fas fa-dollar-sign "></i></button></td>
+          </tr>`
+    $('tbody').append(row);
+    console.log(st);
+        }
+      }
+     else if(coin2[i].Pprice<coin2[i].price){
+    if(parseFloat(thisuser.E_account.coins[st].shares)>0){
+    var row =  `<tr class="text-center bg-gray-500 hover:bg-gray-300 transition-all ease-in">
+            <td class="pb-2 font-semibold" id="Sname">${coin[i]}</td>
+            <td class="pb-2">${coin2[i].symbol}</td>
+            <td class="pb-2 text-green-700" id="price">${coin2[i].price.toFixed(1)}$</td>
+            <td class="pb-2 text-green-700">${coin2[i].percent_net_change.toFixed(1)}%</td>
+            <td class="pb-2 text-green-700">${coin2[i].net_change.toFixed(1)}</td>
+            <td class="pb-2" id="sh">${thisuser.E_account.coins[coin[i]].shares}</td>
+            <td class="pb-2"><button class="bg-red-400 rounded-md w-16 hover:bg-red-500 sell" ><i class="fas fa-dollar-sign "></i></button></td>
+          </tr>`
+    $('tbody').append(row);
+    console.log(st);
+        }
+      }
   }
   function Empty() {if(document.getElementById("tt").tBodies[0].rows.length ==0) {
     $('tbody').append(emptyM);
@@ -124,20 +156,52 @@
   //for(var i=0;ss.length;i++){if(ss[i].price<=0){ss[i].price = 1}}
   for(var i=0;ss.length;i++) {
     var st=ss[i].name;var ii=0;//for(var i=0;i<){}
-    if(ss[i].price<=0){ss[i].price = 1}
+    if(ss[i].Pprice==ss[i].price){ss[i].price = Math.random()*150 +1}
+    if(ss[i].Pprice == null || ss[i].Pprice==ss[i].price) {
     if(parseFloat(thisuser.E_account.stocks[st].shares)>0){
     var row =  `<tr class="text-center bg-gray-500 hover:bg-gray-300 transition-all ease-in">
             <td class="pb-2 font-semibold" id="Sname">${ss[i].name}</td>
             <td class="pb-2">${ss[i].symbol}</td>
-            <td class="pb-2" id="price">${ss[i].price}$</td>
-            <td class="pb-2">${ss[i].percent_net_change}%</td>
-            <td class="pb-2">${ss[i].net_change}</td>
+            <td class="pb-2" id="price">${ss[i].price.toFixed(1)}$</td>
+            <td class="pb-2">${ss[i].percent_net_change.toFixed(1)}%</td>
+            <td class="pb-2">${ss[i].net_change.toFixed(1)}</td>
             <td class="pb-2" id="sh">${thisuser.E_account.stocks[ss[i].name].shares}</td>
             <td class="pb-2"><button class="bg-red-400 rounded-md w-16 hover:bg-red-500 sell" ><i class="fas fa-dollar-sign "></i></button></td>
           </tr>`
     $('tbody').append(row);
     console.log(st);
         }
+      }
+      else if(ss[i].Pprice>ss[i].price) {
+        if(parseFloat(thisuser.E_account.stocks[st].shares)>0){
+        var row =  `<tr class="text-center bg-gray-500 hover:bg-gray-300 transition-all ease-in">
+            <td class="pb-2 font-semibold" id="Sname">${ss[i].name}</td>
+            <td class="pb-2">${ss[i].symbol}</td>
+            <td class="pb-2 text-red-700" id="price">${ss[i].price.toFixed(1)}$</td>
+            <td class="pb-2 text-red-700">${ss[i].percent_net_change.toFixed(1)}%</td>
+            <td class="pb-2 text-red-700">${ss[i].net_change.toFixed(1)}</td>
+            <td class="pb-2" id="sh">${thisuser.E_account.stocks[ss[i].name].shares}</td>
+            <td class="pb-2"><button class="bg-red-400 rounded-md w-16 hover:bg-red-500 sell" ><i class="fas fa-dollar-sign "></i></button></td>
+          </tr>`
+    $('tbody').append(row);
+    console.log(st);
+        }
+      }
+      else if(ss[i].Pprice<ss[i].price) {
+        if(parseFloat(thisuser.E_account.stocks[st].shares)>0){
+        var row =  `<tr class="text-center bg-gray-500 hover:bg-gray-300 transition-all ease-in">
+            <td class="pb-2 font-semibold" id="Sname">${ss[i].name}</td>
+            <td class="pb-2">${ss[i].symbol}</td>
+            <td class="pb-2 text-green-700" id="price">${ss[i].price.toFixed(1)}$</td>
+            <td class="pb-2 text-green-700">${ss[i].percent_net_change.toFixed(1)}%</td>
+            <td class="pb-2 text-green-700">${ss[i].net_change.toFixed(1)}</td>
+            <td class="pb-2" id="sh">${thisuser.E_account.stocks[ss[i].name].shares}</td>
+            <td class="pb-2"><button class="bg-red-400 rounded-md w-16 hover:bg-red-500 sell" ><i class="fas fa-dollar-sign "></i></button></td>
+          </tr>`
+    $('tbody').append(row);
+    console.log(st);
+        }
+      }
   }
 </script>
 <script>
@@ -189,16 +253,27 @@
     console.log($(this).closest('tr').find('#Sname').html());var okCoin=false;var okStock=false;
     console.log($(this).closest('tr').find('#price').html());
     console.log($(this).closest('tr').find('#sh').html());
-    var pp = parseInt($(this).closest('tr').find('#price').html())*parseInt($(this).closest('tr').find('#sh').html())
+    var pp = parseFloat($(this).closest('tr').find('#price').html())*parseFloat($(this).closest('tr').find('#sh').html())
     for(var i=0;i<coin1.length;i++){if($(this).closest('tr').find('#Sname').html()==coin1[i]){okCoin=true}}
     for(var i=0;i<stock.length;i++){if($(this).closest('tr').find('#Sname').html()==stock[i]){okStock=true}}
-    if(okCoin){thisuser.E_account.coins[$(this).closest('tr').find('#Sname').html()].shares=parseInt(thisuser.E_account.coins[$(this).closest('tr').find('#Sname').html()].shares)-parseInt($(this).closest('tr').find('#sh').html())}
-    if(okStock){thisuser.E_account.stocks[$(this).closest('tr').find('#Sname').html()].shares=parseInt(thisuser.E_account.stocks[$(this).closest('tr').find('#Sname').html()].shares)-parseInt($(this).closest('tr').find('#sh').html())}
+    if(okCoin){thisuser.E_account.coins[$(this).closest('tr').find('#Sname').html()].shares=parseFloat(thisuser.E_account.coins[$(this).closest('tr').find('#Sname').html()].shares)-parseFloat($(this).closest('tr').find('#sh').html())}
+    if(okStock){thisuser.E_account.stocks[$(this).closest('tr').find('#Sname').html()].shares=parseFloat(thisuser.E_account.stocks[$(this).closest('tr').find('#Sname').html()].shares)-parseFloat($(this).closest('tr').find('#sh').html())}
    thisuser.E_account.E_balance=parseFloat(thisuser.E_account.E_balance)+pp;localStorage.setItem('logU',JSON.stringify(thisuser));users[index]=thisuser;localStorage.setItem('user',JSON.stringify(users));
     $(this).parents('tr').remove();
     Empty();
     window.location.href='';
   }) 
+</script>
+<script>
+ $('#day').click(function (e) { 
+    e.preventDefault();
+    console.log('clickedday');
+    for(var i=0;i<coin2.length;i++){coin2[i].Pprice = parseFloat(coin2[i].price);var opp = Math.round(Math.random()) * 2 - 1;var change= Math.random()*0.025*parseInt(coin2[i].price);coin2[i].price=parseInt(coin2[i].price)+(parseFloat(change.toFixed(1))*opp);coin2[i].net_change= parseFloat(change.toFixed(1));coin2[i].percent_net_change=((coin2[i].Pprice-coin2[i].Pprice)/coin2[i].price)*100;}
+    localStorage.setItem('coins',JSON.stringify(coin2));console.log('changed c');
+    for(var i=0;i<ss.length;i++){ss[i].Pprice = parseFloat(ss[i].price);var opp = Math.round(Math.random()) * 2 - 1;var change= Math.random()*0.025*parseInt(ss[i].price);console.log(change.toFixed(1));ss[i].price=parseInt(ss[i].price)+(parseFloat(change.toFixed(1))*opp);ss[i].net_change= parseFloat(change.toFixed(1));ss[i].percent_net_change=((ss[i].Pprice-ss[i].Pprice)/ss[i].price)*100;}
+    localStorage.setItem('stocks',JSON.stringify(ss));console.log('changeed ss');
+    window.location.href='';
+  });
 </script>
 </body>
 </html>
